@@ -1,8 +1,14 @@
 #!/bin/bash
 
+
+
+
+
 # 1-copy .env.example to .env
 cp .env.example .env
 
+# 4-change storage to the correct permissions
+chmod 777 -R storage/
 
 # 1- kill containers if it was running
 docker-compose down
@@ -19,5 +25,6 @@ docker-compose build
 docker-compose up -d
 
 
-# 4-change storage to the correct permissions
-chmod 777 -R storage/
+# 3-run migrations & seeders through docker container
+docker exec -it backend bash -c "php artisan migrate && php artisan:seed"
+
