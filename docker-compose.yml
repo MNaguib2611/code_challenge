@@ -1,0 +1,55 @@
+version: '3.5'
+
+services:
+  backend:
+    build:
+      context: '.'
+      args:
+        uid: ${DOCKER_USER_ID}
+        gid: ${DOCKER_GROUP_ID}
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8000:80
+
+  database:
+    image: mysql:5.7
+    container_name: database
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD={DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+
+    volumes:
+    - ./run/var:/var/lib/mysql
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - 8080:80
+
+
+
+networks:
+  default:
+    external:
+      name: themoviedb
+
+
+
+
+
+
+
+
