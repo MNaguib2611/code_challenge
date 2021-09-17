@@ -17,9 +17,9 @@ class GenreSeeder extends Seeder
         $genres =(json_decode($response->getBody()->getContents()));
         foreach ( $genres->genres as $genre) {
             Genre::updateOrCreate(
-                ["id"=>$genre['id']]
+                ["id"=>$genre->id]
                 ,
-                ["id"=>$genre['id'],"genre"=>$genre['name']]);
+                ["id"=>$genre->id,"genre"=>$genre->name]);
         }
 
     }

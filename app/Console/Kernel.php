@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\SeedTopRatedMovies::class,
     ];
 
     /**
@@ -24,8 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //this will run through unix crontab -e utility   everySecond() was not indtroduced yet in laravel 5
+        // $interval = (int)config("moviedb.intervalTimer");
+        // // $schedule->command('seed:movies')->cron("*/$interval * * * *"); //this solution if the configured timer was in minutes
+        // while (true) {
+        //     $schedule->call('seed:movies');
+        //     sleep($interval);
+        // }
     }
 
     /**
