@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
+    protected $hidden = ['pivot'];
+
     public function movies() {
         return $this->belongsToMany(Movie::class);
     }

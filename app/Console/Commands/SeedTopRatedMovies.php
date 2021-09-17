@@ -41,7 +41,7 @@ class SeedTopRatedMovies extends Command
     {
         // interval is a configurable value stored in .env (no od seconds);
         $interval = (int)config("moviedb.intervalTimer");
-        // the  job will be dispatched always
+        // the  job will be dispatched continously but it will wait CONFIGURABLE_INTERVAL_TIMER seconds
         while (true) {
                 SeedTopRatedMoviesJob::dispatch();
                 Log::info("Queue Called".(Carbon::now()));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
+use App\Genre;
 use Illuminate\Http\Request;
 use App\Http\Resources\MovieResource;
 
@@ -16,24 +17,13 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::query();
-        if (request()->category_id) {
+        if (request("category_id")) {
             $genre  = Genre::FindOrFail(request()->category_id);
             $movies = $genre->movies();
         }
 
-        if (request()->popular) {
-            switch(request()->popular){
-                case 'asc':
-                    $movies = $movies->orderBy("popularity","asc");
-                    break;
-                default:
-                    $movies = $movies->orderBy("popularity","desc");
-                    break;
-            }
-        }
-
-        if (request()->rate) {
-            switch(request()->rate){
+        if (request("rated")) {
+            switch(request("rated")){
                 case 'asc':
                     $movies = $movies->orderBy("vote_average","asc");
                     break;
@@ -43,9 +33,22 @@ class MovieController extends Controller
             }
         }
 
+        if (request("popular")) {
+            switch(request("popular")){
+                case 'asc':
+                    $movies = $movies->orderBy("popularity","asc");
+                    break;
+                default:
+                    $movies = $movies->orderBy("popularity","desc");
+                    break;
+            }
+        }
+
+
+
         $movies = $movies->get();
 
-        return MovieResource::collection($movies);
+        return response()->json(MovieResource::collection($movies),200);
     }
 
 }
