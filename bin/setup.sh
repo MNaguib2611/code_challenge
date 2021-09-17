@@ -15,12 +15,14 @@ docker-compose down
 docker network create themoviedb
 
 # 5-build docker containers
-# docker-compose build
+docker-compose build
 
 
 # 6-run docker containers
 docker-compose up -d
 
+# 7-we might need to change the permissions from wihin the container
+docker exec -it backend bash -c "composer install"
 
 # 7-we might need to change the permissions from wihin the container
 docker exec -it backend bash -c "chmod 777 -R storage"

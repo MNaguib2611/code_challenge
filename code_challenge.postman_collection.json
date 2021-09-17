@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "78ae209e-dbe3-49c2-ad76-9ddf66d87850",
+		"name": "code_challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "35",
+							"disabled": true
+						},
+						{
+							"key": "rated",
+							"value": "asc",
+							"disabled": true
+						},
+						{
+							"key": "popular",
+							"value": "asc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
