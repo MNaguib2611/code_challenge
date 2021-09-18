@@ -39,7 +39,7 @@ class SeedTopRatedMovies extends Command
      */
     public function handle()
     {
-        // interval is a configurable value stored in .env (no od seconds);
+        // interval is a configurable value stored in .env (no of seconds);
         $interval = (int)config("moviedb.intervalTimer");
         // the  job will be dispatched continously but it will wait CONFIGURABLE_INTERVAL_TIMER seconds
         while (true) {

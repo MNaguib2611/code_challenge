@@ -16,7 +16,7 @@
 ## How to run the task
 * After cloning this repo,open code_challenge directory.
 * Simply run ```./bin/setup.sh``` .this file contains a bash script that will setup the project .
-* The ```./bin/setup.sh``` file contains explaination about what ach command does. 
+* The ```./bin/setup.sh``` file contains explaination about what each command does. 
 * The script in ```./bin/setup.sh``` will build the docker containers,install composer dependencies,seed movie genres and will run a command to queue the top rated movies every  {configrable_interval_timer}.
 * If the script stopped excuting ,simple use ```./bin/runQueue.sh``` to start the queue again
 * Run the test cases through the ```./bin/runTests.sh```
